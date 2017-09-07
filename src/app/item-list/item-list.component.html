@@ -1,0 +1,14 @@
+<p>There are {{totalItems()}} items in stock.</p>
+<ul>
+  <li *ngFor="let item of myItems">
+    <h2 *ngIf="item.stock === 0" class="out">{{item.name | uppercase}}</h2>
+    <h2 *ngIf="item.stock > 0">{{item.name | uppercase}}</h2>
+    
+    <p *ngIf="item.stock > 0">{{item.description}}</p>
+
+    <p *ngIf="item.stock > 0">{{item.price | currency:'EUR':true}}</p>
+
+    <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
+    <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
+  </li>
+</ul>

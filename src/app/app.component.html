@@ -4,13 +4,5 @@
     Welcome to {{title}}!
   </h1>
   <img width='200px' src='assets/logo.png'>
-  <p>There are {{totalItems()}} items in stock.</p>
-  <ul>
-    <li *ngFor="let item of myItems">
-      <h2>{{item.name | uppercase}}</h2>
-      <p>{{item.description}}</p>
-      <p>{{item.price | currency:'EUR':true}}</p>
-      <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
-      <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
-    </li>
-  </ul>
+  <app-item-list></app-item-list>
+</div>
