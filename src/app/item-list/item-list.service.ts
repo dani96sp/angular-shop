@@ -1,5 +1,5 @@
 import { Item } from './item.model';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
