@@ -1,0 +1,52 @@
+.out {
+    background-color: red;
+    display: block;
+
+}
+
+li {
+    list-style: none;
+    border: 1px solid black;
+    position: relative;
+    float:left;
+    margin: 20px;
+    box-shadow: 2px 2px 5px #0A0028;
+    padding: 3px;
+}
+
+.left > p {
+    text-decoration: underline;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    display:block;
+    margin:auto;
+}
+
+li.selected {
+    background-color: rgb(234, 195, 226)
+}
+
+:disabled {
+    background-color: white;
+}
+
+.amount {
+    text-align: center;
+}
+
+.search {
+    padding: auto;
+}
+
+button:disabled {
+    visibility: hidden;
+}
+
+.input::-webkit-inner-spin-button, .input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item.model';
-import { ITEMS } from './mocks';
+import { ItemListService } from './item-list.service';
+
+
 
 @Component({
   selector: 'app-item-list',
@@ -9,17 +11,61 @@ import { ITEMS } from './mocks';
 })
 export class ItemListComponent implements OnInit {
   myItems: Item[];
-  constructor() { }
+  search: string;
+  constructor(private itemListService: ItemListService) { }
 
   ngOnInit() {
-    this.myItems = ITEMS;
+ //   const itemListService = new ItemListService();
+    this.itemListService.getItemList().subscribe(myItems => this.myItems = myItems);
+
   }
 
   totalItems() {
-    let total = 0;
-    for (const myItems of ITEMS) {
-      total += myItems.stock;
+    if (this.myItems) {
+     return this.myItems.length;
+    } else {
+      return 0;
     }
-    return total;
+
+  }
+
+  totalStock() {
+    if (this.myItems) {
+      let total = 0;
+      for (const cada of this.myItems) {
+        total = cada.stock + total;
+      }
+      return total;
+    } else {
+      return 0;
     }
+
+  }
+
+    addQuantity(item: Item) {
+      if (item.stock > 0 ) {
+        item.quantity++;
+        item.stock--;
+      }
+      console.log(item.quantity);
+    }
+
+    downQuantity(item: Item) {
+      if (item.quantity > 0) {
+        item.quantity--;
+        item.stock++;
+      }
+       console.log(item.quantity);
+     }
+
+  isSelected(id) {
+    this.myItems.forEach(element => {
+      if (element.id === id) {
+        element.selected = true;
+      } else {
+        element.selected = false;
+      }
+    });
+  }
+
 }

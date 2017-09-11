@@ -1,14 +1,26 @@
-<p>There are {{totalItems()}} items in stock.</p>
+
+<h1>Total Items: {{totalItems()}}</h1>
+<h1>Total Stock {{totalStock()}}</h1>
+<input type="text" [(ngModel)]="search" placeholder="Search">
 <ul>
-  <li *ngFor="let item of myItems">
-    <h2 *ngIf="item.stock === 0" class="out">{{item.name | uppercase}}</h2>
-    <h2 *ngIf="item.stock > 0">{{item.name | uppercase}}</h2>
+  <li *ngFor="let item of myItems | mySearch:'name':search" [class.selected]="item.selected" (click)="isSelected(item.id)" >
+    <div class="item">
+     <img [src] = "item.image" />
+     <h2 *ngIf="item.stock === 0" class="out">{{item.name | uppercase}}</h2>
+     <h2 *ngIf="item.stock > 0">{{item.name | uppercase}}</h2>
     
-    <p *ngIf="item.stock > 0">{{item.description}}</p>
+     <p>{{item.description}}</p>
+<!--      <p *ngIf="item.stock > 0">{{item.description}}</p>-->
+<p>{{item.price | currency:'EUR':true}}</p>  
+  <!--    <p *ngIf="item.stock > 0">{{item.price | currency:'EUR':true}}</p>-->
 
-    <p *ngIf="item.stock > 0">{{item.price | currency:'EUR':true}}</p>
-
-    <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
-    <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
+     <div class="panel-amount">
+       <button [disabled]="item.quantity == 0" class="btn-amount" (click)="downQuantity(item)">-</button>
+       <input type="number" (keydown)="showKey($event)" maxlength="2" placeholder="0" class="amount" [(ngModel)]="item.quantity" disabled="amount"/>
+       <button [disabled]="item.stock == 0" class="btn-amount" (click)="addQuantity(item)">+</button>
+     </div>
+     <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
+     <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
+    </div>
   </li>
 </ul>
