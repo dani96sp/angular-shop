@@ -21,6 +21,8 @@
      </div>
      <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
      <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
+     <br>
+     <button [disabled]="item.quantity == 0" class="btn-add" (click)="addItemToCart(item)">AÑADIR AL CARRITO</button>
     </div>
   </li>
 </ul>

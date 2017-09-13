@@ -4,5 +4,7 @@
     Welcome to {{title}}!
   </h1>
   <img width='200px' src='assets/logo.png'>
-  <app-item-list></app-item-list>
+  <a routerLink="/item-list" routerLinkActive="active">Item List</a>
+  <a routerLink="/order" routerLinkActive="active">Order</a>
+  <router-outlet></router-outlet>
 </div>

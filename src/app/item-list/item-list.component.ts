@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Item } from './item.model';
+import { Cart } from '../order/cart/cart.model';
 import { ItemListService } from './item-list.service';
+import { CartService } from '../order/cart/cart.service';
+import { CartComponent } from '../order/cart/cart.component';
 
 
 
@@ -10,14 +13,15 @@ import { ItemListService } from './item-list.service';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
+  @Input() myItem: Item;
   myItems: Item[];
+
   search: string;
-  constructor(private itemListService: ItemListService) { }
+  constructor(private itemListService: ItemListService, private cartService: CartService) { }
 
   ngOnInit() {
  //   const itemListService = new ItemListService();
     this.itemListService.getItemList().subscribe(myItems => this.myItems = myItems);
-
   }
 
   totalItems() {
@@ -66,6 +70,22 @@ export class ItemListComponent implements OnInit {
         element.selected = false;
       }
     });
+  }
+
+  addItemToCart(item: Item) {
+
+    if (this.cartService.cart.items.length > 0) {
+      this.cartService.cart.items.forEach(element => {
+        if (element.id === item.id) {
+
+          this.addQuantity(item);
+        }
+      });
+
+   } else {
+    this.cartService.addItem(item);
+  }
+
   }
 
 }
