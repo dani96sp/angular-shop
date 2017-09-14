@@ -1,0 +1,14 @@
+{
+  "clients": [
+    {
+      "id": 1,
+      "name": "Item name",
+      "description": "These item is the best one",
+      "stock": 7,
+      "price": 14.99,
+      "quantity": 0,
+      "image": "../assets/item1.png",
+      "selected": false
+    }
+  ]
+}

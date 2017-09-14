@@ -1,0 +1,10 @@
+<div>
+    <form [formGroup]="form" (submit)='onSubmit()' class="simple-form">
+        <label>Nombre completo: <input type="text" formControlName="name" /></label><br />
+        <label>E-mail: <input type="email" formControlName="email" /></label><br />
+        Forma de pago: <label><input type="radio" formControlName="preference" value="efectivo" />Efectivo</label>
+        <label><input type="radio" formControlName="preference" value="tarjeta" />Tarjeta</label>
+        <label><input type="radio" formControlName="preference" value="paypal" />PayPal</label><br />
+        <button type="submit" [disabled]="!form.valid" >Submit</button>
+      </form>
+</div>

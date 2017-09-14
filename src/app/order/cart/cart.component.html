@@ -1,10 +1,11 @@
 <div>
 
   <h1>CARRITO</h1>
-  <li *ngFor="let myItem of myItems">
-    <p>Name: {{myItem.name}}</p>
-    <p>ID: {{myItem.id}}</p>
-    <p>Quantity: {{myItem.quantity}}</p>
-  </li>
 
+  <div *ngFor="let myItem of myItems">
+    <p><b>Name:</b> {{myItem.name}}</p>
+    <p><b>ID:</b> {{myItem.id}}</p>
+    <p><b>Quantity:</b> {{myItem.quantity}}</p>
+    <br/>
+  </div>
 </div>

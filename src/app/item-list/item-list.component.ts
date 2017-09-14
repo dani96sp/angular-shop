@@ -47,9 +47,9 @@ export class ItemListComponent implements OnInit {
   }
 
     addQuantity(item: Item) {
-        if (item.stock != 0 && item.quantity < item.stock) {
+        if (item.stock !== 0 && item.quantity < item.stock) {
         item.quantity++;
-        //item.stock--;
+        // item.stock--;
       }
       console.log(item.quantity);
     }
@@ -57,7 +57,7 @@ export class ItemListComponent implements OnInit {
     downQuantity(item: Item) {
       if (item.quantity > 0) {
         item.quantity--;
-        //item.stock++;
+        // item.stock++;
       }
        console.log(item.quantity);
      }
@@ -81,24 +81,26 @@ export class ItemListComponent implements OnInit {
 
   addItemToCart(item: Item) {
 
-      if (this.cartService.cart.items.length != 0) {
-        //  if (item.quantity != 0) {
-         if (this.cartService.cart.items.indexOf(item) != -1) {
-              console.log("no jodas" + item.quantity + " - " + item.id);
-              this.cartService.cart.items.forEach(element => {
-                  if (element.id === item.id) {
-                      console.log(item.quantity);
-                      element.quantity += item.quantity;
-                      console.log(element.quantity);
-                  }
-              });
-          } else {
+      if (this.cartService.cart.items.length !== 0) {
+       //   if (this.myItem.quantity !== 0) {
+        if (this.cartService.cart.items.indexOf(item) !== -1) {
+            console.log('El item existe dentro del carrito');
+            console.log('cantidad: ' + item.quantity + ' - ' + item.id);
+            this.cartService.cart.items.forEach(element => {
+                if (element.id === item.id) {
+                    console.log(item.quantity);
+                    element.quantity += item.quantity;
+                    console.log(element.quantity);
+                }
+            });
+        } else {
+             console.log('Hay items pero el item no existe dentro del carrito');
              this.cartService.addItem(item);
-         }
+        }
    } else {
+    console.log('No hay items y lo añade');
     this.cartService.addItem(item);
   }
-
-  }
+}
 
 }

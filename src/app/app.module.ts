@@ -12,10 +12,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './order/order.component';
 import { CartComponent } from './order/cart/cart.component';
 import { CartService } from './order/cart/cart.service';
+import { FormComponent } from './order/cart/form/form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'item-list', component: ItemListComponent },
-  { path: 'order',     component: OrderComponent }
+  { path: 'order',     component: OrderComponent },
+  { path: '',     component: ItemListComponent }
 ];
 
 @NgModule({
@@ -24,7 +27,8 @@ const appRoutes: Routes = [
     ItemListComponent,
     MySearchPipe,
     OrderComponent,
-    CartComponent
+    CartComponent,
+    FormComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -33,7 +37,8 @@ const appRoutes: Routes = [
     ),
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [ItemListService, CartService],
   bootstrap: [AppComponent]
