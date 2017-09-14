@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './item-list/item-list.component';
 import { MySearchPipe } from './my-search.pipe';
 import { ItemListService } from './item-list/item-list.service';
+import { HttpModule } from '@angular/http';
+
+import { RouterModule, Routes } from '@angular/router';
 import { OrderComponent } from './order/order.component';
 import { CartComponent } from './order/cart/cart.component';
 import { CartService } from './order/cart/cart.service';

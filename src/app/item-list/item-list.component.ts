@@ -47,9 +47,9 @@ export class ItemListComponent implements OnInit {
   }
 
     addQuantity(item: Item) {
-      if (item.stock > 0 ) {
+        if (item.stock != 0 && item.quantity < item.stock) {
         item.quantity++;
-        item.stock--;
+        //item.stock--;
       }
       console.log(item.quantity);
     }
@@ -57,7 +57,7 @@ export class ItemListComponent implements OnInit {
     downQuantity(item: Item) {
       if (item.quantity > 0) {
         item.quantity--;
-        item.stock++;
+        //item.stock++;
       }
        console.log(item.quantity);
      }
@@ -70,18 +70,31 @@ export class ItemListComponent implements OnInit {
         element.selected = false;
       }
     });
+    }
+
+  add(item: Item, value: number) {
+      if (value > 0 && value <= item.stock) {
+          item.quantity = value;
+          console.log(item.quantity);
+      }
   }
 
   addItemToCart(item: Item) {
 
-    if (this.cartService.cart.items.length > 0) {
-      this.cartService.cart.items.forEach(element => {
-        if (element.id === item.id) {
-
-          this.addQuantity(item);
-        }
-      });
-
+      if (this.cartService.cart.items.length != 0) {
+        //  if (item.quantity != 0) {
+         if (this.cartService.cart.items.indexOf(item) != -1) {
+              console.log("no jodas" + item.quantity + " - " + item.id);
+              this.cartService.cart.items.forEach(element => {
+                  if (element.id === item.id) {
+                      console.log(item.quantity);
+                      element.quantity += item.quantity;
+                      console.log(element.quantity);
+                  }
+              });
+          } else {
+             this.cartService.addItem(item);
+         }
    } else {
     this.cartService.addItem(item);
   }

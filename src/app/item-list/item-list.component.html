@@ -16,13 +16,14 @@
 
      <div class="panel-amount">
        <button [disabled]="item.quantity == 0" class="btn-amount" (click)="downQuantity(item)">-</button>
-       <input type="number" (keydown)="showKey($event)" maxlength="2" placeholder="0" class="amount" [(ngModel)]="item.quantity" disabled="amount"/>
+       <input type="number" id="quantity" [(ngModel)]="item.quantity" #t (blur)="add(item, t.value)" maxlength="2" placeholder="0" class="amount" [value]="item.quantity" />
+      <!-- <input type="number" (keydown)="showKey($event)" maxlength="2" placeholder="0" class="amount" [(ngModel)]="item.quantity" disabled="amount"/> -->
        <button [disabled]="item.stock == 0" class="btn-amount" (click)="addQuantity(item)">+</button>
      </div>
      <p *ngIf="item.stock > 0">{{item.stock}} in Stock</p>
      <p *ngIf="item.stock === 0" class="out">Out of Stock</p>
      <br>
-     <button [disabled]="item.quantity == 0" class="btn-add" (click)="addItemToCart(item)">AÑADIR AL CARRITO</button>
+     <button [disabled]="item.quantity <= 0" class="btn-add" (click)="addItemToCart(item)">AÑADIR AL CARRITO</button>
     </div>
   </li>
 </ul>

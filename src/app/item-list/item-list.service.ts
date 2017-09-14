@@ -6,8 +6,11 @@ import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class ItemListService {
+
     itemsUrl: 'item-list';
+
     constructor(private http: Http) { }
+
     getItemList(): Observable<Item[]> {
         return this.http.get('http://localhost:3000/item-list')
         .map( (res: Response) => res.json() )
